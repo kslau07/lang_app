@@ -5,7 +5,13 @@
 :root {
   font-family: "Inter", sans-serif;
   background-color: mintcream;
+  margin: 0;
 }
+
+body {
+  margin: 0;
+}
+
 
 .shadow1 {
   box-shadow: 0.5rem 0.5rem maroon, -0.5rem -0.5rem royalblue;

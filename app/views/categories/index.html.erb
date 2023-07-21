@@ -1,4 +1,14 @@
-<main class="grid gap-10 p-10">
+<main class="grid gap-10 px-10 py-12">
+
+
+<div class="border-black border-4 p-10 shadow1 grid gap-2 bg-white mx-10">
+  <a href="<%= new_quiz_path %>" name="commit" class="relative px-6 py-3 font-bold text-black w-max group justify-self-center cursor-pointer">
+      <span class="absolute inset-0 w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-blue-300 group-hover:translate-x-0 group-hover:translate-y-0"></span>
+      <span class="absolute inset-0 w-full h-full border-4 border-black"></span>
+      <span class="relative">Take a quiz!</span>
+    </a>
+</div>
+
   <%= render "form" %>
   <h2>Categories and questions</h2>
   <% @categories.each do |category| %>
@@ -6,6 +16,7 @@
     <ol>
       <% category.questions.each do |q| %>
         <li>
+        <%= q.user.email %>
           <%= q.body %>
           <%= q.answer %>
         </li>
@@ -13,9 +24,3 @@
     </ol>
   <% end %>
 </main>
-
-
-<div
-  data-controller="hello"
-  >
-</div>
