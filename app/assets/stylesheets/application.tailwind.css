@@ -4,9 +4,10 @@
 
 :root {
   font-family: "Inter", sans-serif;
+  background-color: mintcream;
 }
 
 .shadow1 {
-  box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem #8d5045;
+  box-shadow: 0.5rem 0.5rem maroon, -0.5rem -0.5rem royalblue;
 }
 

@@ -8,6 +8,27 @@
   <div class="flex-1 bg-stone-50"></div>
   <div class="flex-1 bg-gradient-to-r from-red-800 to-rose-600"></div>
 </div>
-
-    <%# class="p-8 bg-gradient-to-r from-sky-50 to-sky-100" %>
-
+<div
+  class="border-b-orange-700 border-b-4 bg-white px-6 py-4 grid grid-flow-col grid-cols-[minmax(44px,44px)_auto_1fr_auto] items-center drop-shadow"
+  >
+  <%= image_tag "baguette.png", { class: 'inline-block', alt: 'A book.', size: "44x44" }%>
+  <%#= favicon_link_tag image_path('favicon.png') %>
+  <div class="inline-block ml-2">
+    <h1 class="block text-4xl font-extrabold text-rose-600 tracking-tight">LangApp</h1>
+    <h2 class="block text-xs text-slate-500 ">A simple language learning app!</h2>
+  </div>
+  <div class=""></div>
+  <!-- blank 1fr -->
+  <div class="grid grid-flow-col gap-2"><!-- links -->
+<a class=" w-max bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+  About
+</a>
+<a class=" w-max cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+  Sign Up
+</a>
+<a class=" w-max cursor-pointer bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+  Log In
+</a>
+  </div>
+</div>
+<%# class="p-8 bg-gradient-to-r from-sky-50 to-sky-100" %>

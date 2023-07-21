@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import FocalPointController from "./focal_point_controller"
+application.register("focal-point", FocalPointController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
