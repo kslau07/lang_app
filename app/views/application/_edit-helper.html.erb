@@ -1,0 +1,19 @@
+<%= form_with model: @person do |person_form| %>
+<h2>(rails form helper)</h2>
+
+  <%= person_form.label :name %>
+  <%= person_form.text_field :name %>
+
+
+  <%= person_form.fields_for :addresses do |address_form| %>
+    <%= address_form.label :kind %>
+    <%= address_form.text_field :kind %>
+
+    <%= address_form.label :street %>
+    <%= address_form.text_field :street %>
+
+  <% end %>
+  
+
+  <%= person_form.submit %>
+<% end %>

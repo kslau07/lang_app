@@ -1,0 +1,67 @@
+<%# This works outside of "f" scope, but how do we submit?  %>
+<%#= select(:category, :id, @question_options) %>
+<%# https://br.pinterest.com/pin/16747829843687008/ %>
+<%# Make a window that scrolls with radio buttons %>
+<%# Have a radio button at the bottom with text field for NEW category %>
+<%# Later: Make categories searchable or autocompletable like in the picture %>
+<%# From RG %>
+<%#= form.collection_radio_buttons :city_id, City.order(:name), :id, :name %>
+<%= form_with model: @category, class: "border-black border-4 p-10 shadow1 grid gap-10" do |category_form| %>
+  <h4>Add a question:</h4>
+  <%# Errors %>
+  <% @category.errors.full_messages.each do |message| %>
+    <div class=""><%= message %></div>
+  <% end %>
+
+
+
+  <fieldset>
+    <!--legend>Select category</legend-->
+    <legend class="mb-4 font-semibold text-gray-900 dark:text-white">Select category</legend>
+    <ul class="w-max text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+      <%= category_form.collection_radio_buttons :name, @categories.order(:name), :name, :name do |b| %>
+        <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+          <div class="flex items-center pl-3">
+            <%= b.radio_button class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" %>
+            <%= b.label class: "w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+          </div>
+        </li>
+      <% end %>
+      <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+        <div class="flex items-center pl-3" 
+          data-controller=""
+          >
+          <input type="radio" value="add_category" name="category[name]" class="mr-4">
+          <input type="text" 
+            data-focal-point-target="input"
+            
+            data-action="input->focal-point#changed"
+            data-focal-point-target="input"
+
+            <%# _data-action="input->text-input#changed"  %>
+            <%# _data-text-input-target="input"  %>
+
+
+            name="category[new_category_name]" placeholder="Add a new category here" class="p-2 border-2 border-gray-300 bg-gray-50">
+          <!--input type="radio" value="1" name="category[id]" id="category_id_1"-->
+          <!--label for="category_id_1">test</label-->
+        </div>
+      </li>
+    </ul>
+  </fieldset>
+
+
+  
+  <%= category_form.fields_for :questions do |question_form| %>
+    <%= question_form.label :body, 'Question', class: "text-lg" %>
+    <%= question_form.text_field :body, class: "bg-gray-50 p-2 border-gray-700 border-2", required: true %>
+    <%= question_form.label :answer, class: "text-lg" %>
+    <%= question_form.text_field :answer, class: "bg-gray-50 p-2 border-gray-700 border-2", required: true %>
+  <% end %>
+  <!--input type="submit" name="commit" value="Add question" class="" data-disable-with="Add question"-->
+  <button type="submit" name="commit" class="relative px-6 py-3 font-bold text-black justify-self-end w-max group">
+    <span class="absolute inset-0 w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-lime-300 group-hover:translate-x-0 group-hover:translate-y-0"></span>
+    <span class="absolute inset-0 w-full h-full border-4 border-black"></span>
+    <span class="relative">Add Your Question</span>
+  </button>
+<% end %>
