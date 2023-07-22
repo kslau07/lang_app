@@ -27,14 +27,16 @@
       <li class="w-full py-2 pr-2 border-b border-gray-200 rounded-t-lg ">
         <div class="flex items-center pl-3" 
           data-controller="focal-point"
-          >
-          <input type="radio" value="add_category" name="category[name]" class="mr-4 scale-125"
+        >
+          <input type="radio" value="add_category" name="category[name]" 
+            class="mr-4 scale-125"
             data-focal-point-target="radio"
-            >
-          <input type="text"
-            data-action="focus->focal-point#chooseRadio"
-          name="category[new_category_name]" placeholder="Add a new category here" 
-          class="p-2 border-2 border-orange-200 bg-gray-50"
+          >
+          <input 
+            class="p-2 border-2 border-slate-300 bg-gray-50 focus:outline-cyan-600 focus:outline-offset-1" 
+            name="category[new_category_name]" placeholder="Add a new category here" 
+            type="text" 
+            data-action="focus->focal-point#chooseRadio" 
           >
           <!--input type="radio" value="1" name="category[id]" id="category_id_1"-->
           <!--label for="category_id_1">test</label-->
@@ -44,21 +46,32 @@
   </fieldset>
   <%= category_form.fields_for :questions do |question_form| %>
     <%= question_form.label :body, "Your Question", class: "text-lg italic" %>
-    <%= question_form.text_field :body, class: "bg-gray-50 p-2 border-gray-400 border-2 mb-4", required: true %>
+    <%= question_form.text_field :body, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-4 focus:outline-cyan-600  focus:outline-offset-1", required: true %>
     <%= question_form.label :answer, "Your Answer", class: "text-lg italic" %>
-    <%= question_form.text_field :answer, class: "bg-gray-50 p-2 border-gray-400 border-2 mb-8 w-1/2", required: true %>
+    <%= question_form.text_field :answer, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-8 w-1/2 focus:outline-cyan-600  focus:outline-offset-1", required: true %>
   <% end %>
-
   <% if current_user  %>
-  <input type="hidden" name="category[user_id]" value="<%= current_user.id %>">
-  <input type="hidden" name="category[questions_attributes][0][user_id]" value="<%= current_user.id %>">
-    
+    <input type="hidden" name="category[user_id]" value="<%= current_user.id %>">
+    <input type="hidden" name="category[questions_attributes][0][user_id]" value="<%= current_user.id %>">
   <% end %>
-
   <!--input type="submit" name="commit" value="Add question" class="" data-disable-with="Add question"-->
-  <button type="submit" name="commit" class="relative px-6 py-3 font-bold text-black w-max group justify-self-end">
-    <span class="absolute inset-0 w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-lime-300 group-hover:translate-x-0 group-hover:translate-y-0"></span>
-    <span class="absolute inset-0 w-full h-full border-4 border-black"></span>
-    <span class="relative">Add Your Question</span>
-  </button>
+  <div class="grid grid-flow-col justify-self-end"
+    data-controller="toggle"
+    data-toggle-toggleable-class="invisible"
+  >
+    <button type="submit" name="commit" 
+      class="relative px-6 py-3 mr-2 font-bold text-black w-max group"
+      data-action="toggle#toggle"
+    >
+      <span class="absolute inset-0 w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-lime-300 group-hover:translate-x-0 group-hover:translate-y-0"></span>
+      <span class="absolute inset-0 w-full h-full border-4 border-black"></span>
+      <span class="relative">Add Your Question</span>
+    </button>
+    <span 
+      data-toggle-target="checkmark"
+      class="invisible -mr-8 text-5xl text-green-500"
+    >
+      ✔
+    </span>
+  </div>
 <% end %>

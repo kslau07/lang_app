@@ -1,10 +1,12 @@
 class CategoriesController < ApplicationController
+
+  # Have page "pause" after submitting a question so user can see green check mark indicating success
+  
   def index
     @categories = Category.all
     @questions = Question.all
     @category = Category.new
     1.times { @category.questions.build }        # How can we add more on the fly? -> Turbo
-
   end
   
   def new
