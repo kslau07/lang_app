@@ -1,0 +1,62 @@
+<div
+  class="p-6 m-10 border"
+  data-controller="toggle"
+  data-toggle-toggleable-class="hidden"
+  >
+  <h1 class="mb-4 text-lg font-bold">Toggle hidden between two elements</h1>
+  <div
+    data-toggle-target="widget"
+    >
+    <label for="dog-names">Choose a dog name:</label>
+    <select name="dog-names" id="dog-names">
+      <option value="barktwain">Bark Twain</option>
+      <option value="albusdumbledog">Albus Dumbledog</option>
+      <option value="sherlockbones">Sherlock Bones</option>
+    </select>
+  </div>
+  <div
+    data-toggle-target="widget"
+    class="hidden"
+    >
+    <label for="cat-names">Choose a cat name:</label>
+    <select name="cat-names" id="cat-names">
+      <option value="catticusfinch">Catticus Finch</option>
+      <option value="purlockholmes">Purrlock Holmes</option>
+      <option value="furballmcbitey">Furball McBitey</option>
+    </select>
+  </div>
+  <button
+    data-action="toggle#toggleAll"
+    class="p-2 text-white bg-blue-400"
+  >Press this</button>
+</div>
+<div
+  class="p-6 m-10 border"
+  data-controller="toggle"
+  data-toggle-toggleable-class="highlight"
+  >
+  <h1 class="mb-4 text-lg font-bold">Highlight element if checked</h1>
+  <ul>
+    <li data-toggle-target="checkBoxWrapper">
+      <input type="checkbox" name="option1" id="" 
+        data-toggle-target="checkbox"
+        class=""
+        data-action="toggle#toggleCheckbox" 
+        >
+      <label for="option1">
+        Option 1
+      </label>
+    </li>
+        
+    <li data-toggle-target="checkBoxWrapper">
+      <input type="checkbox" name="option2" id="" 
+        data-toggle-target="checkbox"
+        class=""
+        data-action="toggle#toggleCheckbox" 
+        >
+      <label for="option2">
+        Option 2
+      </label>
+    </li>
+  </ul>
+</div>

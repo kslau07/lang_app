@@ -47,8 +47,8 @@
   <%= category_form.fields_for :questions do |question_form| %>
     <%= question_form.label :body, "Your Question", class: "text-lg italic" %>
     <%= question_form.text_field :body, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-4 focus:outline-cyan-600  focus:outline-offset-1", required: true %>
-    <%= question_form.label :answer, "Your Answer", class: "text-lg italic" %>
-    <%= question_form.text_field :answer, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-8 w-1/2 focus:outline-cyan-600  focus:outline-offset-1", required: true %>
+    <%= question_form.label :correct_answer, "Your Answer", class: "text-lg italic" %>
+    <%= question_form.text_field :correct_answer, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-8 w-1/2 focus:outline-cyan-600  focus:outline-offset-1", required: true %>
   <% end %>
   <% if current_user  %>
     <input type="hidden" name="category[user_id]" value="<%= current_user.id %>">
@@ -68,7 +68,7 @@
       <span class="relative">Add Your Question</span>
     </button>
     <span 
-      data-toggle-target="checkmark"
+      data-toggle-target="widget"
       class="invisible -mr-8 text-5xl text-green-500"
     >
       ✔

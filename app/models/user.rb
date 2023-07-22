@@ -6,9 +6,12 @@ class User < ApplicationRecord
 
   has_many :categories
   has_many :questions
+  has_many :quizzes
+  has_many :answered_questions, through: :quizzes
+  
 
   def email_required?
-    false
+    true
   end
 
   def will_save_change_to_email?

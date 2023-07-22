@@ -1,11 +1,27 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="toggle"
 export default class extends Controller {
   static classes = [ "toggleable" ]
-  static targets = [ "checkmark" ]
+  static targets = [ "widget", "checkbox", "checkboxWrapper" ]
 
-  toggle() {
-    this.checkmarkTarget.classList.toggle(this.toggleableClass)
+  toggleAll() {    
+    this.widgetTargets.forEach(widget => {
+      widget.classList.toggle(this.toggleableClass)
+    });
+  }
+
+  
+
+  toggleCheckbox() {
+    console.log( this.checkboxWrapperTarget );
+    // this.checkBoxWrapper.toggle(this.toggleableClass)
+    
   }
 }
+
+
+// console.log( this.parentElement );
+    // this.checkBoxWrapper.toggle(this.toggleableClass)
+    // this.checkboxTargets.forEach(checkbox => {
+    //   checkbox.classList.toggle(this.toggleableClass)
+    // });    

@@ -1,3 +1,8 @@
+<div 
+  class="sticky top-0 z-50 flex justify-center hidden h-6 bg-orange-500"
+>
+  Make this appear then fade away for notifications.
+</div>
 <div class="flex h-4">
   <div class="flex-1 bg-gradient-to-r from-blue-900 to-sky-600"></div>
   <div class="flex-1 bg-stone-50"></div>
@@ -26,20 +31,15 @@
     <% if current_user  %>
       <%= link_to "Sign Out", destroy_user_session_path, class: "px-4 py-2 font-semibold text-blue-700 bg-transparent border border-blue-500 rounded cursor-pointer w-max hover:bg-blue-500 hover:text-white hover:border-transparent", method: :delete, data: { turbo_method: :delete } %>
     <% else %>
-
-    <% unless controller_name == "registrations" && action_name == "new" %><%# Hide sign-up button if user is on sign-up page%>
-      <a
+      <% unless controller_name == "registrations" && ["new","create"].include?(action_name) %><%# Hide sign-up button if user is on sign-up page%>
+        <a
       href="<%= new_user_registration_path %>"
       class="px-4 py-2 font-bold text-white bg-blue-500 border border-blue-700 rounded cursor-pointer w-max hover:bg-blue-700"
       >
-        Sign Up
-      </a>
-
-    <% end %>
-
+          Sign Up
+        </a>
+      <% end %>
       <%= link_to "Log In", new_user_session_path, class: "px-4 py-2 font-semibold text-blue-700 bg-transparent border border-blue-500 rounded cursor-pointer w-max hover:bg-blue-500 hover:text-white hover:border-transparent" %>
     <% end %>
-
-    
   </div>
 </div>

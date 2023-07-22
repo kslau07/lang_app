@@ -55,7 +55,7 @@ class CategoriesController < ApplicationController
 
     params.require(:category).permit(:name,
                                       :user_id,
-                                     questions_attributes: [:id, :body, :answer, :user_id] )
+                                     questions_attributes: [:id, :body, :correct_answer, :user_id] )
   end
 end
 
