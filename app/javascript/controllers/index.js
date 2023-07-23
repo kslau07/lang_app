@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CharCountController from "./char_count_controller"
+application.register("char-count", CharCountController)
+
 import FocalPointController from "./focal_point_controller"
 application.register("focal-point", FocalPointController)
 

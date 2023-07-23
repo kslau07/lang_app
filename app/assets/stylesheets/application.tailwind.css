@@ -18,5 +18,6 @@ body {
 }
 
 .highlight {
-  border: 4px solid orange;
+  outline: 2px solid lime;
 }
+

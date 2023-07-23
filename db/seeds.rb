@@ -12,4 +12,6 @@ Question.create(body: "Tu devrais reconnaître le petit garçon près ___ je me 
 Question.create(body: "Les amis loin ___ nous vivons restent chers à nos cœurs.", correct_answer: "desquels", category_id: 1, user_id: 1)
 Question.create(body: "C'est une pièce à propos de ___ nous avons longuement discuté.", correct_answer: "laquelle", category_id: 1, user_id: 1)
 
-puts "User was created"
+puts "#{User.all.count} user record(s)"
+puts "#{Category.all.count} category record(s)"
+puts "#{Question.all.count} question record(s)"

@@ -1,9 +1,10 @@
 <div
-  class="p-6 m-10 border"
+  class="p-6 m-10 border w-max"
   data-controller="toggle"
   data-toggle-toggleable-class="hidden"
   >
-  <h1 class="mb-4 text-lg font-bold">Toggle hidden between two elements</h1>
+  <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">toggle_controller.js</span>
+  <h1 class="my-4 text-lg font-bold">Toggle hidden between two elements</h1>
   <div
     data-toggle-target="widget"
     >
@@ -27,36 +28,60 @@
   </div>
   <button
     data-action="toggle#toggleAll"
-    class="p-2 text-white bg-blue-400"
+    class="mt-8 p-2 text-white bg-blue-400"
   >Press this</button>
 </div>
 <div
-  class="p-6 m-10 border"
+  class="p-6 m-10 border w-max"
   data-controller="toggle"
   data-toggle-toggleable-class="highlight"
   >
-  <h1 class="mb-4 text-lg font-bold">Highlight element if checked</h1>
+  <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">toggle_controller.js</span>
+  <h1 class="my-4 text-lg font-bold">Highlight element if checked</h1>
   <ul>
-    <li data-toggle-target="checkBoxWrapper">
+    <li>
       <input type="checkbox" name="option1" id="" 
         data-toggle-target="checkbox"
         class=""
         data-action="toggle#toggleCheckbox" 
         >
-      <label for="option1">
+      <label for="option1"  data-toggle-target="checkboxLabel">
         Option 1
       </label>
     </li>
-        
-    <li data-toggle-target="checkBoxWrapper">
+    <li>
       <input type="checkbox" name="option2" id="" 
         data-toggle-target="checkbox"
         class=""
         data-action="toggle#toggleCheckbox" 
         >
-      <label for="option2">
+      <label for="option2"  data-toggle-target="checkboxLabel">
         Option 2
       </label>
     </li>
   </ul>
+</div>
+
+
+<div
+  class="p-6 m-10 border w-max"
+  data-controller="char-count"
+  data-char-count-color-class="text-red-500"
+  <%# data-controller="hello" %>
+  >
+  <%# Picture of "characters remaining" design %>
+  <%# https://www.jqueryscript.net/images/Twitter-Like-Text-Box-Character-Counter-with-jQuery-Bootstrap.jpg %>
+  <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">char_count_controller.js</span>
+  <h1 class="my-4 text-lg font-bold">Count characters remaining a la Twitter</h1>
+  <textarea id="story" name="story"
+    value="hello"
+    rows="3" cols="33" 
+    class="block border-2 border-violet-200 focus:outline-gray-400 p-2"
+    data-char-count-target="input"
+    data-action="char-count#charactersLeft"
+    ></textarea>
+  <span>Characters remaining: 
+    <span 
+      data-char-count-target="output"></span>
+  </span>
 </div>
