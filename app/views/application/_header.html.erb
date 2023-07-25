@@ -9,9 +9,15 @@
   <div class="flex-1 bg-gradient-to-r from-red-800 to-rose-600"></div>
 </div>
 <% flash.each do |type, msg| %>
-  <div class="flex justify-center font-bold text-white bg-green-500">
-    <%= msg %>
-  </div>
+  <% if type == "notice" %>
+    <div class="flex justify-center font-bold text-white bg-green-500">
+      <%= msg %>
+    </div>    
+  <% elsif type == "alert" %>
+    <div class="flex justify-center font-bold text-white bg-orange-500">
+      <%= msg %>
+    </div>    
+  <% end %>
 <% end %>
 <div
   class="border-b-slate-200 border-b  px-12 py-4 grid grid-flow-col grid-cols-[minmax(72px,72px)_auto_1fr_auto] items-center"
@@ -33,13 +39,15 @@
     <% else %>
       <% unless controller_name == "registrations" && ["new","create"].include?(action_name) %><%# Hide sign-up button if user is on sign-up page%>
         <a
-      href="<%= new_user_registration_path %>"
-      class="px-4 py-2 font-bold text-white bg-blue-500 border border-blue-700 rounded cursor-pointer w-max hover:bg-blue-700"
-      >
+          href="<%= new_user_registration_path %>"
+          class="px-4 py-2 font-bold text-white bg-blue-500 border border-blue-700 rounded cursor-pointer w-max hover:bg-blue-700"
+          >
           Sign Up
         </a>
       <% end %>
-      <%= link_to "Log In", new_user_session_path, class: "px-4 py-2 font-semibold text-blue-700 bg-transparent border border-blue-500 rounded cursor-pointer w-max hover:bg-blue-500 hover:text-white hover:border-transparent" %>
+      <% unless controller_name == "sessions" && ["new"].include?(action_name) %><%# Hide log in button if log in page already %>
+        <%= link_to "Log In", new_user_session_path, class: "px-4 py-2 font-semibold text-blue-700 bg-transparent border border-blue-500 rounded cursor-pointer w-max hover:bg-blue-500 hover:text-white hover:border-transparent" %>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -6,7 +6,9 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.create(email: 'test_user', password: 'something')
+User.create(email: 'guest', password: 'password')
+guest = User.find_by("email = ?", "guest")
+User.create(email: 'test_user', password: 'password')
 Category.create(name: "Prepositions", user_id: 1)
 Question.create(body: "Tu devrais reconnaître le petit garçon près ___ je me suis assis.", correct_answer: "duquel", category_id: 1, user_id: 1)
 Question.create(body: "Les amis loin ___ nous vivons restent chers à nos cœurs.", correct_answer: "desquels", category_id: 1, user_id: 1)

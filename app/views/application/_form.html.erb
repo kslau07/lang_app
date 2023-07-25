@@ -8,10 +8,15 @@
 <%#= form.collection_radio_buttons :city_id, City.order(:name), :id, :name %>
 <%= form_with model: @category, class: "border-black border-4 p-10 shadow1 grid gap-2 bg-white mx-10" do |category_form| %>
   <h2 class="mb-8 text-3xl italic font-extrabold">Add a Question</h2>
-  <%# Errors %>
+  
+  <% unless @category.errors.empty? %>
+  <div class="p-4 bg-rose-200 mb-4">
   <% @category.errors.full_messages.each do |message| %>
-    <div class=""><%= message %></div>
+    <%= message %>
   <% end %>
+  </div>
+  <% end %>
+
   <fieldset class="mb-8">
     <!--legend>Select category</legend-->
     <legend class="mb-2 font-semibold text-gray-900">Select category</legend>
@@ -44,17 +49,25 @@
       </li>
     </ul>
   </fieldset>
+
+  <div class="border w-max p-4 mb-4">
+    <h1 class="underline">Instructions for adding a question: </h1>
+    <h1>Replace the answer with 3 underscores like this ___</h1>
+    <h1>Example: Tu devrais reconnaître le petit garçon près ___ je me suis assis.</h1>
+    <h1>Enter the correct answer on the next line.</h1>
+  </div>
+
   <%= category_form.fields_for :questions do |question_form| %>
     
-    <%= question_form.label :body, "Input your question, leave a blank ___ where the answer should be.", class: "font-semibold text-gray-900" %>
+    <%= question_form.label :body, "Question:", class: "font-semibold text-gray-900" %>
 
-    <%= question_form.label :body, "Example: Tu devrais reconnaître le petit garçon près ___ je me suis assis.", class: "text-lg italic" %>
+
     
-    <%= question_form.text_field :body, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-4 focus:outline-cyan-600  focus:outline-offset-1", required: true %>
+    <%= question_form.text_field :body, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-4 focus:outline-cyan-600  focus:outline-offset-1", required: true, placeholder: "Input your question here. Example: Tu devrais reconnaître le petit garçon près ___ je me suis assis." %>
     
-    <%= question_form.label :correct_answer, "Input the correct answer", class: "font-semibold text-gray-900" %>
+    <%= question_form.label :correct_answer, "Answer:", class: "font-semibold text-gray-900" %>
     
-    <%= question_form.text_field :correct_answer, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-8 w-1/2 focus:outline-cyan-600  focus:outline-offset-1", required: true %>
+    <%= question_form.text_field :correct_answer, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-8 w-1/2 focus:outline-cyan-600  focus:outline-offset-1", required: true, placeholder: "Input your answer here. Example: duquel" %>
   <% end %>
   <% if current_user  %>
     <input type="hidden" name="category[user_id]" value="<%= current_user.id %>">

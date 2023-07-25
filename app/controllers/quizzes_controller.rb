@@ -10,6 +10,9 @@ class QuizzesController < ApplicationController
   end
 
   def new
+    flash.now[:alert] = "Sign up or log in to save your quizzes!"
+    @user_id = current_user ? current_user.id : User.find_by("email = ?", "guest").id
+
     @quiz = Quiz.new
     @questions = random_questions
 

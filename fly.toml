@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for langapp on 2023-07-21T19:09:16-04:00
+# fly.toml app configuration file generated for lang-app on 2023-07-25T12:25:57-04:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "langapp"
-primary_region = "bos"
+app = "lang-app"
+primary_region = "mia"
 console_command = "/rails/bin/rails console"
 
 [http_service]
