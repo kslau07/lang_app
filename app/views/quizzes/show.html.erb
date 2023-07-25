@@ -1,0 +1,28 @@
+<%# Logic for grading quiz goes here %>
+<h1
+  class="text-3xl text-center my-10"
+  >Here are your results:</h1>
+<div
+  class="px-10 tracking-wider"
+  >
+  <% @questions.each_with_index do |question, idx| %>
+    <div class="mb-4 text-3xl">
+      <span><%= idx + 1 %>.</span>
+      <%= question.body %>
+      <div 
+        class="text-xl text-right"
+        >
+        <span
+          class="<%= question.correct_answer == @quiz.answered_questions[idx].answer ?
+            "text-green-500" : "text-red-600" %>"
+          >
+          Your answer:
+          <%= @quiz.answered_questions[idx].answer %>
+        </span>
+        <br>
+        <span>Correct answer: </span>
+        <%= question.correct_answer %>
+      </div>
+    </div>
+  <% end %>
+</div>

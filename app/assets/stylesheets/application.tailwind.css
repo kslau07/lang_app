@@ -6,12 +6,22 @@
   font-family: "Inter", sans-serif;
   background-color: mintcream;
   margin: 0;
+  height: 100%;
 }
 
 body {
+  height: 100%;
   margin: 0;
+  display: grid;
+  grid-template-areas:
+  "header"
+  "main"
+  "footer";
+  grid-template-rows: auto 1fr auto;
 }
-
+.header {grid-area: "header";}
+.main {grid-area: "main";}
+.footer {grid-area: "footer";}
 
 .shadow1 {
   box-shadow: 0.5rem 0.5rem maroon, -0.5rem -0.5rem royalblue;

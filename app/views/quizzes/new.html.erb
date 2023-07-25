@@ -1,8 +1,21 @@
-<%# 
-Take random questions from all questions for now.
-
- %>
-
-<% @questions.each do |item| %>
-  <%= item %>
+<%= form_with model: @quiz, class:'form' do |quiz_form| %>
+  <h4>Questions:</h4>
+  <%# hidden field %>
+  <%= quiz_form.hidden_field :user_id, value: current_user.id %>
+  <%= quiz_form.fields_for :answered_questions do |answered_question_form| %>
+    <div>
+      <%= @questions[answered_question_form.index].body  %>
+    </div>
+    <div>
+      <%= answered_question_form.label :answer %>
+      <%= answered_question_form.text_field :answer, class: "bg-slate-100" %>
+    </div>
+    <%# hidden field %>
+    <%= answered_question_form.hidden_field :question_id, 
+          value: @questions[answered_question_form.index].id 
+      %>
+  <% end %>
+  <%= quiz_form.submit "Submit Answers", class: "p-2 bg-sky-200" %>
 <% end %>
+<%#= answered_question_form.label :question_id %>
+<%#= answered_question_form.text_field :question_id, value: "1", class: "bg-slate-100" %>

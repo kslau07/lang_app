@@ -13,11 +13,18 @@
   </head>
 
   <body>
-    
+  
+    <header class="header">
+      <%= render "header" %>
+    </header>
 
-    <%= render "header" %>
-    <%#= render "flash" %>
-    <%= yield %>
-    <%= render "footer" %>
+    <main class="main">
+      <%= yield %>
+    </main>
+
+    <footer class="footer">
+      <%= render "footer" %>
+    </footer>
+
   </body>
 </html>

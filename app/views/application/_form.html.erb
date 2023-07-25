@@ -14,7 +14,7 @@
   <% end %>
   <fieldset class="mb-8">
     <!--legend>Select category</legend-->
-    <legend class="mb-2 font-semibold text-gray-900 ">Select category</legend>
+    <legend class="mb-2 font-semibold text-gray-900">Select category</legend>
     <ul class="text-sm font-medium text-gray-900 bg-white border border-gray-200 w-max ">
       <%= category_form.collection_radio_buttons :name, @categories.order(:name), :name, :name do |b| %>
         <li class="w-full border-b border-gray-200 rounded-t-lg ">
@@ -45,9 +45,15 @@
     </ul>
   </fieldset>
   <%= category_form.fields_for :questions do |question_form| %>
-    <%= question_form.label :body, "Your Question", class: "text-lg italic" %>
+    
+    <%= question_form.label :body, "Input your question, leave a blank ___ where the answer should be.", class: "font-semibold text-gray-900" %>
+
+    <%= question_form.label :body, "Example: Tu devrais reconnaître le petit garçon près ___ je me suis assis.", class: "text-lg italic" %>
+    
     <%= question_form.text_field :body, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-4 focus:outline-cyan-600  focus:outline-offset-1", required: true %>
-    <%= question_form.label :correct_answer, "Your Answer", class: "text-lg italic" %>
+    
+    <%= question_form.label :correct_answer, "Input the correct answer", class: "font-semibold text-gray-900" %>
+    
     <%= question_form.text_field :correct_answer, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-8 w-1/2 focus:outline-cyan-600  focus:outline-offset-1", required: true %>
   <% end %>
   <% if current_user  %>

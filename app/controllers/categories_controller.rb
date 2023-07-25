@@ -53,9 +53,9 @@ class CategoriesController < ApplicationController
   def category_params
     params[:category][:name] = params[:category][:new_category_name] if params[:category][:name] == 'add_category'
 
-    params.require(:category).permit(:name,
-                                      :user_id,
-                                     questions_attributes: [:id, :body, :correct_answer, :user_id] )
+    params.require(:category)
+          .permit(:name, :user_id,
+                  questions_attributes: [:id, :body, :correct_answer, :user_id] )
   end
 end
 
