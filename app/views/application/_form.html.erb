@@ -7,7 +7,9 @@
 <%# From RG %>
 <%#= form.collection_radio_buttons :city_id, City.order(:name), :id, :name %>
 <%= form_with model: @category, class: "border-black border-4 p-10 shadow1 grid gap-2 bg-white mx-10" do |category_form| %>
+  
   <h2 class="mb-8 text-3xl italic font-extrabold">Add a Question</h2>
+
   <% unless @category.errors.empty? %>
     <div class="p-4 mb-4 bg-rose-200">
       <% @category.errors.full_messages.each do |message| %>
@@ -15,9 +17,12 @@
       <% end %>
     </div>
   <% end %>
+
   <fieldset class="mb-8">
     <!--legend>Select category</legend-->
+
     <legend class="mb-2 font-semibold text-gray-900">Select category</legend>
+    
     <ul class="text-sm font-medium text-gray-900 bg-white border border-gray-200 w-max ">
       <%= category_form.collection_radio_buttons :name, @categories.order(:name), :name, :name do |b| %>
         <li class="w-full border-b border-gray-200 rounded-t-lg ">

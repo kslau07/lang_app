@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :quizzes
   # resources :quizzes, only: %i[show new create]
   resources :experiments, only: %i[index]
-  
+
   # get 'sign_up', to: 'devise/sessions#new'
   # get 'log_in', to: 'devise/sessions#new'
 end

@@ -2,51 +2,38 @@ class QuestionsController < ApplicationController
   def new
     @question = Question.new
     @category = @question.build_category
+    @categories = Category.all
   end
 
   def create
-    
-    # qu=Question.new(question_params)
-    # qu.errors.full_messages
-    # cat=qu.build_category
+    # Get rid of extra param inside nested param [:category_attributes][:new_category_name]
+    clean_params = question_params.except(:category_attributes)
+    # We do not have to add the nested hash back in, but normally it exists
+    clean_params[:category_attributes] = question_params[:category_attributes].except(:new_category_name)
+    @question = Question.new(clean_params)
 
-    @question = Question.new(question_params)
-    # @question.build_category.attributes={}
-    
     category = Category.find_or_create_by(name: question_params[:category_attributes][:name])
     category.user_id = question_params[:category_attributes][:user_id] if category.id.nil?
-    @question.category=category
+    @question.category = category
 
-    debugger
-    # question_params[:category_attributes][:name]
-
-    # category.attributes = category_params
-
-    # @question.category = category
-
-    # if @question.save
-    #   redirect_to categories_path, notice: 'Your question was saved!'
-    # else
-    #   flash.now[:notice] = "Some items require your attention." 
-    #   render 'categories/index', status: :unprocessable_entity
-    # end
+    if @question.save
+      redirect_to categories_path, notice: 'Your question was saved!'
+    else
+      flash.now[:notice] = 'Some items require your attention.'
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
 
   def question_params
-    # params.require(:question).permit(:body, :correct_answer, :category_id)
+    # If exists, pull out new category name from nested hash and set it
+    if params[:question][:category_attributes][:name] == 'add_category'
+      params[:question][:category_attributes][:name] =
+        params[:question][:category_attributes][:new_category_name]
+    end
+
     params.require(:question).permit(:body, :correct_answer, :user_id,
-                                    category_attributes: [:id, :name, :user_id])
+                                     category_attributes: %i[id name user_id new_category_name])
   end
-
-
-  # def category_params
-  #   params[:category][:name] = params[:category][:new_category_name] if params[:category][:name] == 'add_category'
-
-  #   params.require(:category)
-  #         .permit(:name, :user_id,
-  #                 questions_attributes: [:id, :body, :correct_answer, :user_id] )
-  # end
-
 end
