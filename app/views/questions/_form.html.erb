@@ -1,0 +1,37 @@
+new quesiton form
+
+<%= form_with model: @question do |question_form| %>
+  
+  <%# category %>
+  <%# user id %>
+  <%= question_form.label :body %>
+  <%= question_form.text_field :body, class: "bg-gray-300" %>
+  <%= question_form.label :correct_answer %>
+  <%= question_form.text_field :correct_answer, class: "bg-gray-300" %>
+  <%= question_form.hidden_field :user_id, value: current_user.id %>
+
+  <%= question_form.fields_for :category do |category_form| %>
+    
+    <%= category_form.label :name %>
+    <%= category_form.text_field :name, class: "bg-gray-300" %>
+    <%= category_form.hidden_field :user_id, value: current_user.id %>
+    
+  <% end %>
+
+  <%= question_form.submit %>
+<% end %>
+
+<%
+=begin %>
+    <input type="hidden" name="question[user_id]" value="<%= current_user.id %>">
+    <input type="hidden" name="question[category_attributes][0][user_id]" value="<%= current_user.id %>">
+
+  <%= category_form.fields_for :questions do |question_form| %>
+    <%= question_form.label :body, "Question:", class: "font-semibold text-gray-900" %>
+    <%= question_form.text_field :body, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-4 focus:outline-cyan-600  focus:outline-offset-1", required: true, placeholder: "Input your question here. Example: Tu devrais reconnaître le petit garçon près ___ je me suis assis." %>
+    <%= question_form.label :correct_answer, "Answer:", class: "font-semibold text-gray-900" %>
+    <%= question_form.text_field :correct_answer, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-8 w-1/2 focus:outline-cyan-600  focus:outline-offset-1", required: true, placeholder: "Input your answer here. Example: duquel" %>
+  <% end %>
+
+<%
+=end %>

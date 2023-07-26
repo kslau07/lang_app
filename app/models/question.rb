@@ -3,4 +3,6 @@ class Question < ApplicationRecord
   belongs_to :user
   validates :body, presence: true
   validates :correct_answer, presence: true
+
+  accepts_nested_attributes_for :category
 end
