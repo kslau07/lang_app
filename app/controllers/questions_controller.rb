@@ -1,3 +1,5 @@
+# Create @user_id that can be used anywhere on the app. Do not send user ids with html.
+
 class QuestionsController < ApplicationController
   def new
     @question = Question.new

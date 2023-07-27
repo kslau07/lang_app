@@ -51,7 +51,8 @@ new quesiton form
 
     </ul>
 
-    <%= category_form.hidden_field :user_id, value: current_user.id %>
+    <%# delete me, bad practice to send ids by html %>
+    <%#= category_form.hidden_field :user_id, value: current_user.id %>
   <% end %>
 </fieldset>
 
@@ -61,7 +62,8 @@ new quesiton form
   <%= question_form.text_field :body, class: "bg-gray-300" %>
   <%= question_form.label :correct_answer, "Answer: " %>
   <%= question_form.text_field :correct_answer, class: "bg-gray-300" %>
-  <%= question_form.hidden_field :user_id, value: current_user.id %>
+  <%# delete me, bad practice to send ids by html %>
+  <%#= question_form.hidden_field :user_id, value: current_user.id %>
 
   <%= question_form.submit %>
 <% end %>
