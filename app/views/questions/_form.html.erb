@@ -1,10 +1,5 @@
-new quesiton form
-
-<%#= form_with model: @question do |question_form| %>
-<%= form_with model: @question, class: "border-black border-4 p-10 shadow1 grid gap-2 bg-white mx-10" do |question_form| %>
-
-  <h2 class="mb-8 text-3xl italic font-extrabold">Add a Question</h2>
-
+<%= form_with model: @question, class: "border p-4 grid gap-2 bg-white mx-10 rounded shadow" do |question_form| %>
+  <h2 class="mb-8 pb-4 text-3xl italic font-extrabold border-b">Add a Question</h2>
   <% unless @question.errors.empty? %>
     <div class="p-4 mb-4 bg-rose-200">
       <% @question.errors.full_messages.each do |message| %>
@@ -12,58 +7,68 @@ new quesiton form
       <% end %>
     </div>
   <% end %>
-
-<fieldset class="mb-8">
-  <legend class="mb-2 font-semibold text-gray-900">Select category</legend>
-
-  <%= question_form.fields_for :category do |category_form| %>
-    <%#= category_form.label :name, "Category Name" %>
-    <%#= category_form.text_field :name, class: "bg-gray-300" %>
-    <ul class="text-sm font-medium text-gray-900 bg-white border border-gray-200 w-max ">
-      <%= category_form.collection_radio_buttons :name, @categories.order(:name), :name, :name do |cat| %>
-        <li class="w-full border-b border-gray-200 rounded-t-lg ">
-          <div class="flex items-center pl-3">          
-            <%= cat.radio_button class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 scale-125" %>
-            <%= cat.label class: "w-full py-3 ml-4 text-sm font-medium text-gray-900 " %>
-          </div>
-        </li>
-      <% end %>
-
-
-      <li class="w-full py-2 pr-2 border-b border-gray-200 rounded-t-lg ">
-        <div class="flex items-center pl-3" 
+  <fieldset class="mb-8">
+    <legend class="mb-2 font-semibold text-gray-900">Select category</legend>
+    <%= question_form.fields_for :category do |category_form| %>
+      <ul class="text-sm font-medium text-gray-900 bg-white border border-gray-200 w-max ">
+        <%= category_form.collection_radio_buttons :name, @categories.order(:name), :name, :name do |cat| %>
+          <li class="w-full border-b border-gray-200 rounded-t-lg ">
+            <div class="flex items-center pl-3">
+              <%= cat.radio_button class: "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 scale-125" %>
+              <%= cat.label class: "w-full py-3 ml-4 text-sm font-medium text-gray-900 " %>
+            </div>
+          </li>
+        <% end %>
+        <li class="w-full py-2 pr-2 border-b border-gray-200 rounded-t-lg ">
+          <div class="flex items-center pl-3" 
           data-controller="focal-point"
         >
-          <input type="radio" value="add_category" name="question[category_attributes][name]" 
+            <input type="radio" value="add_category" name="question[category_attributes][name]" 
             class="mr-4 scale-125"
             data-focal-point-target="radio"
           >
-          <input 
+            <input 
             class="p-2 border-2 border-slate-300 bg-gray-50 focus:outline-cyan-600 focus:outline-offset-1" 
             name="question[category_attributes][new_category_name]" placeholder="Add a new category here" 
             type="text" 
             data-action="focus->focal-point#chooseRadio" 
-          >
-          <!--input type="radio" value="1" name="category[id]" id="category_id_1"-->
-          <!--label for="category_id_1">test</label-->
-        </div>
-      </li>
-
-    </ul>
-
-    <%# delete me, bad practice to send ids by html %>
-    <%#= category_form.hidden_field :user_id, value: current_user.id %>
-  <% end %>
-</fieldset>
-
-  <%# category %>
-  <%# user id %>
-  <%= question_form.label :body, "Question: " %>
-  <%= question_form.text_field :body, class: "bg-gray-300" %>
-  <%= question_form.label :correct_answer, "Answer: " %>
-  <%= question_form.text_field :correct_answer, class: "bg-gray-300" %>
-  <%# delete me, bad practice to send ids by html %>
-  <%#= question_form.hidden_field :user_id, value: current_user.id %>
-
-  <%= question_form.submit %>
+            >
+          </div>
+        </li>
+      </ul>
+    <% end %>
+  </fieldset>
+  <div class="p-4 mb-4 border w-max">
+    <h1 class="underline">Instructions for adding a question: </h1>
+    <h1>Replace the answer with 3 underscores like this ___</h1>
+    <h1>Example: Tu devrais reconnaître le petit garçon près ___ je me suis assis.</h1>
+    <h1>Enter the correct answer on the next line.</h1>
+  </div>
+  <%= question_form.label :body, "Question:", class: "font-semibold text-gray-900" %>
+  <%= question_form.text_field :body, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-4 focus:outline-cyan-600  focus:outline-offset-1", required: true, placeholder: "Input your question here. Example: Tu devrais reconnaître le petit garçon près ___ je me suis assis." %>
+  <%= question_form.label :correct_answer, "Answer:", class: "font-semibold text-gray-900" %>
+  <%= question_form.text_field :correct_answer, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-8 w-1/2 focus:outline-cyan-600  focus:outline-offset-1", required: true, placeholder: "Input your answer here. Example: duquel" %>
+  <div data-controller="toggle"></div>
+  <div class="grid grid-flow-col justify-self-end"
+    data-controller="toggle"
+    data-toggle-toggleable-class="invisible"
+    >
+    <button type="button" name="commit" 
+    <%# <button type="submit" name="commit"  %>
+      class="relative px-6 py-3 mr-2 font-bold text-black w-max group"
+      data-action="toggle#toggle"
+    >
+      <span class="absolute inset-0 w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-lime-300 group-hover:translate-x-0 group-hover:translate-y-0"></span>
+      <span class="absolute inset-0 w-full h-full border-4 border-black"></span>
+      <span class="relative">Add Your Question</span>
+    </button>
+    <span 
+      data-toggle-target="widget"
+      class="invisible -mr-8 text-5xl text-green-500"
+    >
+      ✔
+    </span>
+  </div>
+  
 <% end %>
+

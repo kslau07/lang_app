@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :categories
   has_many :questions
   has_many :quizzes
-  has_many :answered_questions, through: :quizzes
+  has_many :question_answers, through: :quizzes
   
 
   def email_required?

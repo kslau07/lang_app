@@ -1,6 +1,8 @@
 # Create @user_id that can be used anywhere on the app. Do not send user ids with html.
 
 class QuestionsController < ApplicationController
+  before_action :require_login, only: [:new, :create]
+
   def new
     @question = Question.new
     @category = @question.build_category
@@ -15,8 +17,10 @@ class QuestionsController < ApplicationController
     @question = Question.new(clean_params)
 
     category = Category.find_or_create_by(name: question_params[:category_attributes][:name])
-    category.user_id = question_params[:category_attributes][:user_id] if category.id.nil?
+    category.user_id = current_user.id if category.id.nil?
     @question.category = category
+
+    
 
     if @question.save
       redirect_to categories_path, notice: 'Your question was saved!'
@@ -35,7 +39,20 @@ class QuestionsController < ApplicationController
         params[:question][:category_attributes][:new_category_name]
     end
 
+    params[:question][:user_id] = current_user.id
+
     params.require(:question).permit(:body, :correct_answer, :user_id,
-                                     category_attributes: %i[id name user_id new_category_name])
+                                     category_attributes: %i[id name new_category_name])
+                                    #  category_attributes: %i[id name user_id new_category_name])
   end
+
+  def require_login
+    unless current_user
+      redirect_to new_user_session_path, { flash: { alert: 'You must be logged in to submit questions.' } }
+    end
+  end
+
+  # def set_user_id
+  #   @guest_or_user = current_user ? current_user.id : User.find_by(email: 'guest')
+  # end
 end

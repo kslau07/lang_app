@@ -10,9 +10,6 @@
       <span class="absolute inset-0 w-full h-full border-4 border-black"></span>
       <span class="relative">Add a Question!</span>
     </a>
-
-    <%= link_to "New Question", new_question_path, class: "font-semibold text-blue-600 hover:underline" %>
-
   </nav>
 
 
@@ -27,12 +24,6 @@
 
 <%
 =end %>
-
-
-
-  
-
-  <%#= render "form" %>
 
   <h2>Categories and questions</h2>
   <% @categories.each do |category| %>
@@ -49,10 +40,3 @@
   <% end %>
 </main>
 
-
-<%
-=begin %>
-<div class="grid gap-2 p-10 mx-10 bg-white border-4 border-black shadow1">
-</div>
-<%
-=end %>
