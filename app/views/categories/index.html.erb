@@ -32,7 +32,7 @@
       <% category.questions.each do |q| %>
         <li>
           <%= q.user.email %>
-          <%= q.body %>
+          <%= q.ques_content %>
           <%= q.correct_answer %>
         </li>
       <% end %>

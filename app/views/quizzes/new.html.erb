@@ -11,7 +11,7 @@
   <%= quiz_form.hidden_field :user_id, value: @user_id %>
   <%= quiz_form.fields_for :answered_questions do |answered_question_form| %>
     <div class="text-3xl tracking-wide py-10">
-      <% question_string = @questions[answered_question_form.index].body %>
+      <% question_string = @questions[answered_question_form.index].ques_content %>
       <% slice_index = question_string =~ /_/ %>
       <% cleaned_string = remove_underscores(question_string) %>
       <%= answered_question_form.index + 1 %>.

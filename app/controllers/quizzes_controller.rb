@@ -5,7 +5,7 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.includes(:answered_questions).find(params[:id])
     question_ids = @quiz.answered_questions.pluck(:question_id)
     @questions = Question.where(id: question_ids)
-    # @questions = Question.where(id: question_ids).pluck(:id, :body, :correct_answer)
+    # @questions = Question.where(id: question_ids).pluck(:id, :ques_content, :correct_answer)
   end
 
   def new

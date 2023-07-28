@@ -41,7 +41,7 @@ class QuestionsController < ApplicationController
 
     params[:question][:user_id] = current_user.id
 
-    params.require(:question).permit(:body, :correct_answer, :user_id,
+    params.require(:question).permit(:ques_content, :correct_answer, :user_id,
                                      category_attributes: %i[id name new_category_name])
                                     #  category_attributes: %i[id name user_id new_category_name])
   end

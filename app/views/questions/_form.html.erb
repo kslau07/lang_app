@@ -44,8 +44,8 @@
     <h1>Example: Tu devrais reconnaître le petit garçon près ___ je me suis assis.</h1>
     <h1>Enter the correct answer on the next line.</h1>
   </div>
-  <%= question_form.label :body, "Question:", class: "font-semibold text-gray-900" %>
-  <%= question_form.text_field :body, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-4 focus:outline-cyan-600  focus:outline-offset-1", required: true, placeholder: "Input your question here. Example: Tu devrais reconnaître le petit garçon près ___ je me suis assis." %>
+  <%= question_form.label :ques_content, "Question:", class: "font-semibold text-gray-900" %>
+  <%= question_form.text_field :ques_content, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-4 focus:outline-cyan-600  focus:outline-offset-1", required: true, placeholder: "Input your question here. Example: Tu devrais reconnaître le petit garçon près ___ je me suis assis." %>
   <%= question_form.label :correct_answer, "Answer:", class: "font-semibold text-gray-900" %>
   <%= question_form.text_field :correct_answer, class: "bg-gray-50 p-2 border-slate-300 border-2 mb-8 w-1/2 focus:outline-cyan-600  focus:outline-offset-1", required: true, placeholder: "Input your answer here. Example: duquel" %>
   <div data-controller="toggle"></div>
