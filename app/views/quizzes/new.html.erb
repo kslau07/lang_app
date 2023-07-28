@@ -9,19 +9,19 @@
   
   <%# hidden field %>
   <%= quiz_form.hidden_field :user_id, value: @user_id %>
-  <%= quiz_form.fields_for :question_answers do |question_answer_form| %>
+  <%= quiz_form.fields_for :answered_questions do |answered_question_form| %>
     <div class="text-3xl tracking-wide py-10">
-      <% question_string = @questions[question_answer_form.index].body %>
+      <% question_string = @questions[answered_question_form.index].body %>
       <% slice_index = question_string =~ /_/ %>
       <% cleaned_string = remove_underscores(question_string) %>
-      <%= question_answer_form.index + 1 %>.
+      <%= answered_question_form.index + 1 %>.
       <%= cleaned_string[0..slice_index] %>
-      <%= question_answer_form.text_field :answer, class: "bg-lime-100 border-b-2 border-b-zinc-600 w-fit py-1 px-2 w-7 focus:outline-lime-400" %>
+      <%= answered_question_form.text_field :answer, class: "bg-lime-100 border-b-2 border-b-zinc-600 w-fit py-1 px-2 w-7 focus:outline-lime-400" %>
       <%= cleaned_string[slice_index..] %>
     </div>
     <%# hidden field %>
-    <%= question_answer_form.hidden_field :question_id, 
-          value: @questions[question_answer_form.index].id 
+    <%= answered_question_form.hidden_field :question_id, 
+          value: @questions[answered_question_form.index].id 
       %>
   <% end %>
 
@@ -41,22 +41,22 @@
   </div>
 
 <% end %>
-<%#= question_answer_form.label :question_id %>
-<%#= question_answer_form.text_field :question_id, value: "1", class: "bg-slate-100" %>
+<%#= answered_question_form.label :question_id %>
+<%#= answered_question_form.text_field :question_id, value: "1", class: "bg-slate-100" %>
 
 
 </div>
 <%
 =begin %>
-<%#= question_answer_form.label :answer %>
-<span role="textbox" class="px-2 py-1 bg-orange-100 border rounded w-fit w-7" type="text" name="quiz[question_answers_attributes][0][answer]" id="quiz_question_answers_attributes_0_answer"></span>
+<%#= answered_question_form.label :answer %>
+<span role="textbox" class="px-2 py-1 bg-orange-100 border rounded w-fit w-7" type="text" name="quiz[answered_questions_attributes][0][answer]" id="quiz_answered_questions_attributes_0_answer"></span>
 <%
 =end %>
 
 <%
 =begin %>
       <span 
-        name="quiz[question_answers_attributes][0][answer]" id="quiz_question_answers_attributes_0_answer"
+        name="quiz[answered_questions_attributes][0][answer]" id="quiz_answered_questions_attributes_0_answer"
         class="bg-orange-50 rounded border w-fit px-4 py-2 inline-block mx-4 focus:outline-lime-400  focus:outline-offset-1 min-w-[125px]" 
         role="textbox" contenteditable></span>
 

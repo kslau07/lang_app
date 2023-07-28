@@ -2,8 +2,8 @@ class QuizzesController < ApplicationController
   def index; end
 
   def show
-    @quiz = Quiz.includes(:question_answers).find(params[:id])
-    question_ids = @quiz.question_answers.pluck(:question_id)
+    @quiz = Quiz.includes(:answered_questions).find(params[:id])
+    question_ids = @quiz.answered_questions.pluck(:question_id)
     @questions = Question.where(id: question_ids)
     # @questions = Question.where(id: question_ids).pluck(:id, :body, :correct_answer)
   end
@@ -15,7 +15,7 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.new
     @questions = random_questions
 
-    2.times { @quiz.question_answers.build }
+    2.times { @quiz.answered_questions.build }
   end
 
   def create
@@ -42,6 +42,6 @@ class QuizzesController < ApplicationController
 
   def quiz_params
     params.require(:quiz).permit(:user_id,
-                                 question_answers_attributes: %i[id question_id answer])
+                                 answered_questions_attributes: %i[id question_id answer])
   end
 end
