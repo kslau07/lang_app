@@ -19,7 +19,9 @@ class QuizzesController < ApplicationController
   end
 
   def create
-    @quiz = Quiz.new(quiz_params)
+    user = User.find(current_user.id)
+    @quiz = user.quizzes.build(quiz_params)
+    # @quiz = Quiz.new(quiz_params)
 
     if @quiz.save
       redirect_to quiz_path(@quiz), notice: 'You have successfully completed a quiz!'
@@ -42,6 +44,6 @@ class QuizzesController < ApplicationController
 
   def quiz_params
     params.require(:quiz).permit(:user_id,
-                                 answered_questions_attributes: %i[id question_id answer])
+                                 answered_questions_attributes: %i[id question_id user_answer])
   end
 end

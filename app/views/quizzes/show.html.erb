@@ -13,11 +13,11 @@
         class="text-xl text-right"
         >
         <span
-          class="<%= question.correct_answer == @quiz.answered_questions[idx].answer ?
+          class="<%= question.correct_answer == @quiz.answered_questions[idx].user_answer ?
             "text-green-500" : "text-red-600" %>"
           >
           Your answer:
-          <%= @quiz.answered_questions[idx].answer %>
+          <%= @quiz.answered_questions[idx].user_answer %>
         </span>
         <br>
         <span>Correct answer: </span>
