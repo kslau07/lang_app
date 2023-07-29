@@ -4,14 +4,16 @@
 # LangApp
 I'm learning French and I thought it would be nice to build a website to facilitate learning while I also simultaneously hone my Rails' skill set. The main purpose of this site is to build and take quizzes through submitted questions.
 
-Link to project (site may be offline):
-[ LangApp ](lang-app.fly.dev)
+
+[ Link to LangApp project ](lang-app.fly.dev) (site may be offline)
 
 ## How It's Made:
 
-**Tech used:** HTML, Tailwind CSS, Ruby on Rails, StimulusJS
+**Tech used:** HTML, Ruby on Rails, Tailwind CSS, StimulusJS
 
-Here's where you can go to town on how you actually built this thing. Write as much as you can here, it's totally fine if it's not too much just make sure you write *something*. If you don't have too much experience on your resume working on the front end that's totally fine. This is where you can really show off your passion and make up for that ten fold.
+I've been learning Ruby on Rails through [The Odin Project](www.theodinproject.com). One of the recent lessons introduced [_StimulusJS_](https://stimulus.hotwired.dev/), "A modest Javascript framework", which has been a cool tool to add some interactivity to my pages.
+
+I also incorporated Tailwind CSS as it seems to have gotten good reviews in the industry and is easy to include in my Rails projects.
 
 ## Optimizations
 
