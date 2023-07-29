@@ -35,6 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_22_060122) do
   create_table "questions", force: :cascade do |t|
     t.string "ques_content"
     t.string "correct_answer"
+    t.string "translation"
     t.bigint "category_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false

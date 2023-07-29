@@ -10,10 +10,16 @@
 
 
     <%= f.label :email, "Username:", class: "w-full font-bold text-lg" %>
-    <%= f.text_field :email, autofocus: true, class: "w-full p-2 border-2 border-slate-300 bg-gray-50 focus:outline-cyan-600 focus:outline-offset-1 mb-6" %>
+    <%= f.text_field :email, autofocus: true, 
+      class: "w-full p-2 border-2 border-slate-300 bg-gray-50 focus:outline-cyan-600 focus:outline-offset-1 mb-6",
+      required: true 
+    %>
   
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password", class: "w-full p-2 border-2 border-slate-300 bg-gray-50 focus:outline-cyan-600 focus:outline-offset-1 mb-6"  %>
+    <%= f.password_field :password, autocomplete: "current-password",
+      class: "w-full p-2 border-2 border-slate-300 bg-gray-50 focus:outline-cyan-600 focus:outline-offset-1 mb-6",
+      required: true
+      %>
   
     <% if devise_mapping.rememberable? %>
       <div class="mb-6">

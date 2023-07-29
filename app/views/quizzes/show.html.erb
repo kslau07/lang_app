@@ -1,27 +1,49 @@
 <%# Logic for grading quiz goes here %>
 <h1
-  class="text-3xl text-center my-10"
+  class="my-10 text-3xl text-center"
   >Here are your results:</h1>
 <div
   class="px-10 tracking-wider"
   >
   <% @questions.each_with_index do |question, idx| %>
     <div class="mb-4 text-3xl">
+
+
+
+
+      <div class="border p-4">                                                  <%# delete classes in div or delete div %>
+        <% question_string = question.ques_content %>
+        <% slice_index = question_string =~ /_/ %>
+        <% cleaned_string = remove_underscores!(question_string) %>
+        <%= idx + 1 %>.
+        <%= cleaned_string[0..slice_index] %>
+        <span type="text" class="bg-lime-100 border-b-2 border-b-zinc-600 py-1 px-2 focus:outline-lime-400">
+          <%= @quiz.answered_questions[idx].user_answer %>
+        </span>
+      <%#= answered_question_form.text_field :user_answer, class: "bg-lime-100 border-b-2 border-b-zinc-600 w-fit py-1 px-2 w-7 focus:outline-lime-400" %>
+
+        <%= cleaned_string[slice_index..] %>
+      </div>
+      
+
+      <%#= answered_question_form.text_field :user_answer, class: "bg-lime-100 border-b-2 border-b-zinc-600 w-fit py-1 px-2 w-7 focus:outline-lime-400" %>
+
+      
+      
       <span><%= idx + 1 %>.</span>
       <%= question.ques_content %>
       <div 
         class="text-xl text-right"
         >
-        <span
+        <h6>Correct answer: <%= question.correct_answer %></h6>
+
+        <h6
           class="<%= question.correct_answer == @quiz.answered_questions[idx].user_answer ?
             "text-green-500" : "text-red-600" %>"
           >
           Your answer:
           <%= @quiz.answered_questions[idx].user_answer %>
-        </span>
-        <br>
-        <span>Correct answer: </span>
-        <%= question.correct_answer %>
+        </h6>
       </div>
     </div>
   <% end %>

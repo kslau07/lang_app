@@ -1,0 +1,75 @@
+<div class="grid justify-center px-10 ">
+<h1
+  class="my-10 text-3xl text-center"
+  >
+  Please answer these questions:</h1>
+<h2 class="">Category: __LIST CATEGORY HERE__</h2>
+<%= form_with model: @quiz, class: " grid" do |quiz_form| %>
+  
+  
+  <%# hidden field %>
+  <%= quiz_form.hidden_field :user_id, value: @user_id %>
+  <%= quiz_form.fields_for :answered_questions do |answered_question_form| %>
+
+    <% this_question = @questions[answered_question_form.index] %>
+    <%# HINT %>
+    <div class="border text-right">
+      <button type="button" class="p-2 bg-blue-300">Hint</button>
+      
+      <%= "_ " * this_question.correct_answer.length  %>
+        
+    </div>
+    
+
+    <div class="text-3xl tracking-wide py-10">
+      <% question_string = this_question.ques_content %>
+      <% slice_index = question_string =~ /_/ %>
+      <% cleaned_string = remove_underscores!(question_string) %>
+      <%= answered_question_form.index + 1 %>.
+      <%= cleaned_string[0..slice_index] %>
+      <%= answered_question_form.text_field :user_answer, class: "inline-block bg-orange-100 border-b-2 border-b-zinc-400 border border-zinc-300 py-1 px-2 focus:outline-slate-400 rounded align-bottom" %>
+      <%= cleaned_string[slice_index..] %>
+    </div>
+    <%# hidden field %>
+    <%= answered_question_form.hidden_field :question_id, 
+          value: this_question.id 
+      %>
+  <% end %>
+
+  <div class="grid justify-self-center">
+    <% unless current_user %>
+      <h2 class="inline-block">Sign up or log in to save your quizzes.</h2>
+    <% end %>
+    <button type="submit" name="commit"
+      class="relative px-6 py-3 mr-2 font-bold text-black w-max group"
+      data-action="toggle#toggle"
+    >
+      <span class="absolute inset-0 w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-lime-300 group-hover:translate-x-0 group-hover:translate-y-0"></span>
+      <span class="absolute inset-0 w-full h-full border-4 border-black"></span>
+      <span class="relative">Submit Answers</span>
+    </button>
+    <%#= quiz_form.submit "Submit Answers", class: "p-2 bg-sky-200" %>
+  </div>
+
+<% end %>
+<%#= answered_question_form.label :question_id %>
+<%#= answered_question_form.text_field :question_id, value: "1", class: "bg-slate-100" %>
+
+
+</div>
+<%
+=begin %>
+<%#= answered_question_form.label :answer %>
+<span role="textbox" class="px-2 py-1 bg-orange-100 border rounded w-fit w-7" type="text" name="quiz[answered_questions_attributes][0][answer]" id="quiz_answered_questions_attributes_0_answer"></span>
+<%
+=end %>
+
+<%
+=begin %>
+      <span 
+        name="quiz[answered_questions_attributes][0][answer]" id="quiz_answered_questions_attributes_0_answer"
+        class="bg-orange-50 rounded border w-fit px-4 py-2 inline-block mx-4 focus:outline-lime-400  focus:outline-offset-1 min-w-[125px]" 
+        role="textbox" contenteditable></span>
+
+<%
+=end %>

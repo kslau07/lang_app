@@ -10,7 +10,7 @@
     <ul class="grid gap-2 mt-2">
       <% resource.errors.full_messages.each do |message| %>        
         <% message.gsub!("Email", "Username") %>
-        <li><%= message %></li>
+        <li><strong><%= message %></strong></li>
       <% end %>
     </ul>
   </div>

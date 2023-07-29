@@ -31,9 +31,10 @@
     <ol>
       <% category.questions.each do |q| %>
         <li>
-          <%= q.user.email %>
-          <%= q.ques_content %>
-          <%= q.correct_answer %>
+          <span>Username: <%= q.user.email %></span>
+          <span>Question: <%= q.ques_content %></span>
+          <span>Translation: <%= q.translation %></span>
+          <span>Answer: <%= q.correct_answer %></span>
         </li>
       <% end %>
     </ol>
